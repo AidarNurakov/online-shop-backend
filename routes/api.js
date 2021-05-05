@@ -18,7 +18,7 @@ router.get('/categories', function (req, res) {
 
 });
 
-router.get('/product/Id', function (req, res) {
+router.get('/product/:id', function (req, res) {
   res.status(200).json('get single product');
 });
 
