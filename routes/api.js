@@ -5,7 +5,7 @@ router.get('/all-products', function (req, res) {
   res.status(200).json('all products are working');
 });
 
-router.get('/products/:category-id', function (req, res) {
+router.get('/products/:categoryId', function (req, res) {
   res.status(200).json('this category products are here');
 
 });
@@ -18,7 +18,7 @@ router.get('/categories', function (req, res) {
 
 });
 
-router.get('/product/:id', function (req, res) {
+router.get('/product/Id', function (req, res) {
   res.status(200).json('get single product');
 });
 
