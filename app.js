@@ -4,9 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 
-const {
-  router
-} = require('./routes/api.js');
+const { router } = require('./routes/api.js');
 
 app.use(bodyParser.json());
 
