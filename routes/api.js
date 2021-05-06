@@ -1,4 +1,11 @@
 const express = require('express');
+const {
+  parseFormData
+} = require('../middlewares/formdata')
+
+const {
+  createProduct
+} = require('../controllers/product');
 const router = express.Router();
 
 router.get('/all-products', function (req, res) {
@@ -9,11 +16,11 @@ router.get('/products/:categoryId', function (req, res) {
   res.status(200).json('this category products are here');
 
 });
-router.post('/product', function (req, res) {
-  res.status(200).json('end point for creating product');
 
-});
-router.get('/categories', function (req, res) {
+router.post('/product', parseFormData, createProduct);
+
+router.post('/category', function (req, res) {
+  console.log(req.body)
   res.status(200).json('get all categories');
 
 });
