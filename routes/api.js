@@ -1,32 +1,31 @@
 const express = require('express');
-const {
-  parseFormData
-} = require('../middlewares/formdata')
+const {parseFormData} = require('../middlewares/formdata')
 
-const {
-  createProduct
-} = require('../controllers/product');
+const {createCategory,getCategories} = require('../controllers/category');
+
+const {getProductsByCategory,createProduct,getAllProducts, getProductById} = require('../controllers/product')
+
 const router = express.Router();
 
-router.get('/all-products', function (req, res) {
-  res.status(200).json('all products are working');
-});
 
-router.get('/products/:categoryId', function (req, res) {
-  res.status(200).json('this category products are here');
+// энд пойнты для категорий
+router.post('/category', createCategory); //добавить категорию
+router.get('/categories', getCategories)//получить все категории
 
-});
+//получить все продукты
+router.get('/products', getAllProducts);
 
+//получить продукты определенной категории
+router.get('/products/:categoryId', getProductsByCategory); 
+
+//создание продукта
 router.post('/product', parseFormData, createProduct);
 
-router.post('/category', function (req, res) {
-  console.log(req.body)
-  res.status(200).json('get all categories');
+//получение продукта по id
+router.get('/products/:productId', getProductById );
 
-});
 
-router.get('/product/:id', function (req, res) {
-  res.status(200).json('get single product');
-});
+
+
 
 exports.router = router;

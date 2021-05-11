@@ -7,7 +7,7 @@ const schema = mongoose.Schema;
 // # 4 Как создать документ
 
 const productSchema = new schema({
-  title: {
+  name: {
     type: String,
     required: true,
   },
@@ -16,8 +16,14 @@ const productSchema = new schema({
     default: '0'
   },
   category: {
-    type: String,
-    default: "NoName"
+    type: mongoose.Types.ObjectId,
+    ref: "Category",
+    required: true
+  },
+  id : {
+    type: mongoose.Types.ObjectId,
+    ref: 'ProductId',
+    requires: true
   },
   rate: {
     type: Number,
