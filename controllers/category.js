@@ -12,7 +12,7 @@ exports.getCategories = async function(req,res) {
 exports.createCategory = async function(req,res) {
   try {
     const result = req.body;
-    console.log(result)
+    // console.log(result)
 
     if(!result.icon||!result.title) {
       res.status(400).json({message: "некорректные параметры"})

@@ -1,4 +1,6 @@
-const { Product } = require('../models/product');
+const {
+  Product
+} = require('../models/product');
 
 exports.createProduct = async function (product) {
 
@@ -42,23 +44,36 @@ exports.createProduct = async function (product) {
   }
 }
 
-exports.getProducts = async function(options = {}) {
-  try{
+exports.getProducts = async function (options = {}) {
+  try {
     const allProducts = await Product.find(options)
-    return allProducts; 
-  }catch(e) {
+    return allProducts;
+  } catch (e) {
     console.log(e.message);
   }
 }
 
-exports.getProductById = async function(product) {
-  try{
-    console.log('Перед поиском продукта')
-    const singleProduct = await Product.findOne({
-      Productid: product.ProductId
-    })
+exports.getProductById = async function (id) {
+  try {
+    const singleProduct = await Product.findById(id);
     return singleProduct;
-  }catch(e){
-    console.log(e.message + "не удалось найти продукт!");
+  } catch (e) {
+    console.log(e.message);
   }
+}
+
+exports.deleteProductById = async function (productId) {
+  try {
+    console.log('Product _id in Delete service')
+
+    const removedProduct = await Product.findByIdAndDelete({
+      _id: productId
+    });
+    return removedProduct;
+
+  } catch (e) {
+    // console.log('Error from deleting);
+
+  }
+
 }

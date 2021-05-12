@@ -20,11 +20,6 @@ const productSchema = new schema({
     ref: "Category",
     required: true
   },
-  id : {
-    type: mongoose.Types.ObjectId,
-    ref: 'ProductId',
-    requires: true
-  },
   rate: {
     type: Number,
     default: 0
