@@ -1,5 +1,3 @@
-const path = require('path');
-const fs = require('fs');
 const {
   createProduct,
   getProducts,
@@ -7,11 +5,9 @@ const {
   deleteProductById,
   editProduct
 } = require('../services/product')
-
 const {
-  saveFile
-} = require('../helpers/file')
-
+  getCategories
+} = require('../services/category');
 
 
 exports.getProductsByCategory = async function (req, res) {
@@ -44,8 +40,8 @@ exports.editProduct = async function (req, res) {
       ...req.body,
     }
 
-    if (req.files) {
-      updateData.file = req.files.picture;
+    if (req.file) {
+      updateData.picture = req.file.path;
     }
 
     const updatedProduct = await editProduct(req.params.productId, updateData);
@@ -106,13 +102,4 @@ exports.createProduct = async function (req, res) {
   // }
 
 
-}
-
-exports.getAllProducts = async function (req, res) {
-
-  const allProducts = await getProducts();
-  res.status(200).json({
-    message: "Получены все продукты",
-    data: allProducts
-  });
 }

@@ -7,3 +7,12 @@ exports.createCategory = async function(category) {
 
   }
 }
+
+exports.getCategories = async function() {
+  try {
+    const categories = await Category.find();
+    return categories;
+    } catch (e) {
+
+    }
+}

@@ -2,13 +2,12 @@ const express = require('express');
 const {
   upload
 } = require('./multer');
-const {
-  parseFormData
-} = require('../middlewares/formdata')
+
 
 const {
   createCategory,
-  getCategories
+  getCategories,
+  getCategoriesWithProducts
 } = require('../controllers/category');
 
 const {
@@ -25,11 +24,19 @@ const router = express.Router();
 
 
 // энд пойнты для категорий
-router.post('/category', createCategory); //добавить категорию
-router.get('/categories', getCategories) //получить все категории
+
+//добавить категорию
+router.post('/category', createCategory); 
+
+//получить все категории
+router.get('/categories', getCategories) 
+
+
+
+//энд пойнты для товаров --------------------------------------
 
 //получить все продукты
-router.get('/products', getAllProducts);
+router.get('/category', getCategoriesWithProducts);
 
 //получить продукты определенной категории
 router.get('/products/:categoryId', getProductsByCategory);

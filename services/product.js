@@ -1,4 +1,6 @@
-const { Product } = require('../models/product');
+const {
+  Product
+} = require('../models/product');
 
 exports.createProduct = async function (product) {
 
@@ -45,8 +47,8 @@ exports.createProduct = async function (product) {
 
 exports.getProducts = async function (options = {}) {
   try {
-    const allProducts = await Product.find(options)
-    return allProducts;
+    const products = await Product.find(options)
+    return products;
   } catch (e) {
     console.log(e.message);
   }
@@ -76,7 +78,7 @@ exports.deleteProductById = async function (productId) {
 
 exports.editProduct = async function (productId, data) {
   console.log(data);
-  
+
   try {
     const updatedProduct = Product.findByIdAndUpdate(productId, data);
 
@@ -85,4 +87,3 @@ exports.editProduct = async function (productId, data) {
     throw new Error('Ошибка при изменении товара: ' + e.message)
   }
 }
-
