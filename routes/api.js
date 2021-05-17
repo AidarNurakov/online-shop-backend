@@ -1,5 +1,8 @@
 const express = require('express');
 const {
+  upload
+} = require('./multer');
+const {
   parseFormData
 } = require('../middlewares/formdata')
 
@@ -12,7 +15,9 @@ const {
   getProductsByCategory,
   createProduct,
   getAllProducts,
-  getProductById, deleteOneProduct
+  getProductById,
+  deleteOneProduct,
+  editProduct,
 } = require('../controllers/product');
 
 
@@ -30,12 +35,14 @@ router.get('/products', getAllProducts);
 router.get('/products/:categoryId', getProductsByCategory);
 
 //создание продукта
-router.post('/product', parseFormData, createProduct);
+router.post('/product', upload.single('file'), createProduct);
 
 //получение продукта по id
 router.get('/product/:productId', getProductById);
 
 //удаление продукта по id
 router.delete('/product/:productId', deleteOneProduct);
+
+router.patch('/product/:productId', upload.single('file'), editProduct);
 
 exports.router = router;

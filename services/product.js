@@ -1,15 +1,13 @@
-const {
-  Product
-} = require('../models/product');
+const { Product } = require('../models/product');
 
 exports.createProduct = async function (product) {
 
   try {
-    console.log('Перед поиском продукта')
+    console.log('Перед поиском продукта', product)
 
     const productExists = await Product.findOne({
       price: product.price,
-      name: product.name
+      name: product.name,
     });
 
     console.log('После  поиска продукта', productExists)
@@ -25,7 +23,8 @@ exports.createProduct = async function (product) {
     const newProduct = await Product.create({
       name: product.name,
       price: product.price,
-      category: product.category
+      category: product.category,
+      picture: product.path,
     });
 
     return {
@@ -64,11 +63,8 @@ exports.getProductById = async function (id) {
 
 exports.deleteProductById = async function (productId) {
   try {
-    console.log('Product _id in Delete service')
 
-    const removedProduct = await Product.findByIdAndDelete({
-      _id: productId
-    });
+    const removedProduct = await Product.findByIdAndDelete(productId);
     return removedProduct;
 
   } catch (e) {
@@ -77,3 +73,16 @@ exports.deleteProductById = async function (productId) {
   }
 
 }
+
+exports.editProduct = async function (productId, data) {
+  console.log(data);
+  
+  try {
+    const updatedProduct = Product.findByIdAndUpdate(productId, data);
+
+    return updatedProduct;
+  } catch (e) {
+    throw new Error('Ошибка при изменении товара: ' + e.message)
+  }
+}
+
