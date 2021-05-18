@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
@@ -8,10 +7,14 @@ const {
   router
 } = require('./routes/api.js');
 
-app.use(bodyParser.json());
+const corsOptions = {
+  origin: []
+}
+
+app.use(express.json());
+app.use(cors(corsOptions));
 app.use('/api', router);
 app.use(express.static('files'))
-app.use(cors());
 
 const PORT = process.env.PORT || 5050;
 
