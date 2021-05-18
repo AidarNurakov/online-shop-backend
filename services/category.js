@@ -1,4 +1,5 @@
 const { Category } = require('../models/category');
+const { Product } = require('../models/product');
 
 exports.createCategory = async function(category) {
   try{
@@ -16,3 +17,22 @@ exports.getCategories = async function() {
 
     }
 }
+
+exports.getCategoryById = async function(id) {
+  try{
+    const singleCategory = await Category.findById(id);
+    return singleCategory;
+  }catch(err) {
+    console.log(err.message);
+  }
+}
+
+exports.deleteCategoryById = async function(categoryId) {
+  try{
+    const removedCategory = await Product.findByIdAndDelete(categoryId);
+    return removedCategory;
+
+  }catch(err) {
+    console.log('Error from deleting category')
+  }
+} 

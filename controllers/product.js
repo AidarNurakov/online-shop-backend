@@ -5,18 +5,31 @@ const {
   deleteProductById,
   editProduct
 } = require('../services/product')
+
 const {
-  getCategories
+  getCategoryById
 } = require('../services/category');
 
 
 exports.getProductsByCategory = async function (req, res) {
   // console.log(req.params.categoryId);
+  const category = await getCategoryById(req.params.categoryId);
+
+  if (!category) {
+    return res.status(404).json({
+      message: 'Данная категория не найдена!'
+    })
+  }
+
   const products = await getProducts({
     category: req.params.categoryId
   })
   res.status(200).json({
-    data: products
+    success: true,
+    data: {
+      category: category.title,
+      products: products
+    }
   });
 }
 

@@ -68,6 +68,7 @@ exports.deleteProductById = async function (productId) {
 
     const removedProduct = await Product.findByIdAndDelete(productId);
     return removedProduct;
+  
 
   } catch (e) {
     // console.log('Error from deleting);
