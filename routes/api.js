@@ -1,5 +1,7 @@
 const express = require('express');
-const { upload } = require('./multer');
+const {
+  upload
+} = require('./multer');
 
 const {
   createCategory,
@@ -30,7 +32,7 @@ router.get('/categories', getCategories);
 router.get('/category/:categoryId', getCategoryById);
 
 //создать категорию
-router.post('/category', createCategory); 
+router.post('/category', createCategory);
 
 //Удаление категории по id
 router.delete('/category/:categoryId', deleteCategory)

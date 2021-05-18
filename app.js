@@ -7,10 +7,6 @@ const {
   router
 } = require('./routes/api.js');
 
-const corsOptions = {
-  origin: []
-}
-
 app.use(cors());
 
 app.use(express.json());
