@@ -11,8 +11,9 @@ const corsOptions = {
   origin: []
 }
 
+app.use(cors());
+
 app.use(express.json());
-app.use(cors(corsOptions));
 app.use('/api', router);
 app.use(express.static('files'))
 
