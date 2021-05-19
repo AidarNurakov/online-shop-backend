@@ -9,6 +9,45 @@ exports.createCategory = async function(category) {
   }
 }
 
+exports.createCategoryTest = async function (category) {
+
+  try {
+    console.log('Перед поиском категории', category)
+
+    const categoryExists = await Category.findOne({
+      title: category.title,
+      icon: product.icon
+    });
+
+    if (categoryExists) {
+      return {
+        message: 'Данная категория была добавлена ранее!',
+        status: 'failed',
+        data: {}
+      }
+    }
+
+    const newCategory = await Category.create({
+      title: category.title,
+      icon: category.path
+    });
+
+    return {
+      message: 'Категория успешно создана',
+      status: 'success',
+      data: newCategory
+    }
+
+  } catch (e) {
+    console.log('ERROR FROM Catogory', e.message)
+    return {
+      message: e.message,
+      data: null,
+      status: 'failed'
+    }
+  }
+}
+
 exports.getCategories = async function() {
   try {
     const categories = await Category.find();

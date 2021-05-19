@@ -31,10 +31,11 @@
 }
 ```
 
-- create product for main page, METHOD: POST
+- create one product for main page, METHOD: POST
 - url: base_url/api/product
 
 ```
+- Response если нету дубликата продукта, проверка по названию товара и цене
 {
     "message": "Продукт успешно создан",
     "status": "success",
@@ -46,6 +47,17 @@
         "category": "609947ad60a45b243823974e",
         "__v": 0
     }
+}
+
+```
+
+```
+- Response если товар был добавлен ранее (цена либо название товара идентичное)
+
+{
+    "message": "Данная позиция была добавлена ранее!",
+    "status": "failed",
+    "data": {}
 }
 
 ```
@@ -77,7 +89,7 @@
 
 - delete product by it's Id, METHOD: DELETE
 - url: base_url/api/product/:productId
-- где productId это Id 
+- где productId это Id товара
 
 ```
 - Response if product found:
@@ -94,10 +106,29 @@
 ```
 
 - Edit product, METHOD: PATCH
-- Response:
+- url: base_url/api/product/:productId
+- где productIt это айди товара, например 609bdc3b14cb6a120c8d4bef
+
 
 ```
+- Response:
 {
     "message": "Продукт успешно изменен..."
 }
+```
+
+```
+- Response if product not found:
+
+{
+    "message": "Попытка изменения несуществующей позиции!"
+}
+
+```
+
+### Categories
+
+- Создание категории, METHOD: POST
+- url: base_url/api/category
+- Response если создание категории прошло успешно:
 ```

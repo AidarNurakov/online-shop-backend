@@ -109,10 +109,4 @@ exports.createProduct = async function (req, res) {
     })
   }
 
-  // if (!product.name || !product.price || !product.category) {
-
-  //   return res.status(404).json('There is no response from database!');
-  // }
-
-
 }

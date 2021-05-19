@@ -3,12 +3,8 @@ const {
   deleteCategoryById,
   getCategoryById
 } = require('../services/category.js');
-const {
-  getProducts
-} = require('../services/product.js');
-const {
-  getProductsByCategory
-} = require('./product.js');
+const { getProducts } = require('../services/product.js');
+const {Category} = require('../models/category');
 
 
 exports.getCategories = async function (req, res) {
@@ -44,6 +40,27 @@ exports.createCategory = async function (req, res) {
   } catch (e) {
     res.status(500).json('There is trouble with category' + e.message);
   }
+}
+
+exports.createCategoryTest = async function (req, res) {
+  try {
+    const categoryData = {
+      ...req.body,
+    };
+
+    if (req.file) {
+      categoryData.path = req.file.path;
+    }
+
+    const result = await createCategoryTest(categoryData);
+
+    res.status(201).json(result)
+  } catch (e) {
+    res.status(500).json({
+      message: 'Ошибка сервера: ' + e.message
+    })
+  }
+
 }
 
 exports.getCategoriesWithProducts = async function (req, res) {
@@ -123,3 +140,4 @@ exports.deleteCategory = async function (req, res) {
     console.log(err.message);
   }
 }
+

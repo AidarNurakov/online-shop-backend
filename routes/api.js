@@ -1,14 +1,15 @@
 const express = require('express');
 const {
-  upload
-} = require('./multer');
+  upload,
+  iconLoad  
+} = require('./multer.js');
 
 const {
+  createCategoryTest,
   createCategory,
   getCategories,
   getCategoriesWithProducts,
   editCategory,
-  deleteCategory,
   getCategoryById
 } = require('../controllers/category');
 
@@ -21,6 +22,8 @@ const {
 } = require('../controllers/product');
 
 
+
+
 const router = express.Router();
 
 // энд пойнты для категорий
@@ -28,14 +31,11 @@ const router = express.Router();
 //получить все категории
 router.get('/categories', getCategories);
 
-//Получить одну категорию по id
+//Получить одну категорию по id с ее продуктами
 router.get('/category/:categoryId', getCategoryById);
 
 //создать категорию
-router.post('/category', createCategory);
-
-//Удаление категории по id
-router.delete('/category/:categoryId', deleteCategory)
+router.post('/category', iconLoad.single('file'),createCategory);
 
 //Изменение категории
 router.patch('/categories', editCategory);
@@ -63,3 +63,4 @@ router.delete('/product/:productId', deleteOneProduct);
 router.patch('/product/:productId', upload.single('file'), editProduct);
 
 exports.router = router;
+
