@@ -1,22 +1,22 @@
 const { Category } = require('../models/category');
 const { Product } = require('../models/product');
 
-exports.createCategory = async function(category) {
-  try{
-    console.log('Перед получением категории');
-  }catch(e) {
+// exports.createCategory = async function(category) {
+//   try{
+//     console.log('Перед получением категории');
+//   }catch(e) {
 
-  }
-}
+//   }
+// }
 
-exports.createCategoryTest = async function (category) {
+exports.createCategory = async function (category) {
 
   try {
     console.log('Перед поиском категории', category)
 
     const categoryExists = await Category.findOne({
       title: category.title,
-      icon: product.icon
+      icon: category.icon
     });
 
     if (categoryExists) {
@@ -39,7 +39,7 @@ exports.createCategoryTest = async function (category) {
     }
 
   } catch (e) {
-    console.log('ERROR FROM Catogory', e.message)
+    console.log('ERROR FROM Category', e.message)
     return {
       message: e.message,
       data: null,

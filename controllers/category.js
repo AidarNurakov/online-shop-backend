@@ -1,10 +1,10 @@
 const {
   getCategories,
   deleteCategoryById,
-  getCategoryById
+  getCategoryById,
+  createCategory
 } = require('../services/category.js');
 const { getProducts } = require('../services/product.js');
-const {Category} = require('../models/category');
 
 
 exports.getCategories = async function (req, res) {
@@ -21,29 +21,6 @@ exports.getCategories = async function (req, res) {
 
 exports.createCategory = async function (req, res) {
   try {
-    const result = req.body;
-    // console.log(result)
-
-    if (!result.icon || !result.title) {
-      res.status(400).json({
-        message: "некорректные параметры"
-      })
-      return;
-    }
-    const createdCategory = await Category.create(result);
-    res.status(201).json({
-      message: "Создана категория успешно!",
-      data: createdCategory
-    });
-
-
-  } catch (e) {
-    res.status(500).json('There is trouble with category' + e.message);
-  }
-}
-
-exports.createCategoryTest = async function (req, res) {
-  try {
     const categoryData = {
       ...req.body,
     };
@@ -52,7 +29,7 @@ exports.createCategoryTest = async function (req, res) {
       categoryData.path = req.file.path;
     }
 
-    const result = await createCategoryTest(categoryData);
+    const result = await createCategory(categoryData);
 
     res.status(201).json(result)
   } catch (e) {

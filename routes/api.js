@@ -5,7 +5,7 @@ const {
 } = require('./multer.js');
 
 const {
-  createCategoryTest,
+  // createCategoryTest,
   createCategory,
   getCategories,
   getCategoriesWithProducts,
@@ -35,17 +35,17 @@ router.get('/categories', getCategories);
 router.get('/category/:categoryId', getCategoryById);
 
 //создать категорию
-router.post('/category', iconLoad.single('file'),createCategory);
+router.post('/category', upload.single('file'),createCategory);
 
 //Изменение категории
 router.patch('/categories', editCategory);
 
+//получить все продукты с их категориями
+router.get('/category', getCategoriesWithProducts);
 
 
 //энд пойнты для товаров --------------------------------------
 
-//получить все продукты с их категориями
-router.get('/category', getCategoriesWithProducts);
 
 //получить продукты определенной категории
 router.get('/products/:categoryId', getProductsByCategory);
