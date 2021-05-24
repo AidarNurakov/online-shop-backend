@@ -38,7 +38,7 @@ router.get('/category/:categoryId', getCategoryById);
 router.post('/category', upload.single('file'),createCategory);
 
 //Изменение категории
-router.patch('/categories', editCategory);
+router.patch('/category/:id', upload.single('file'), editCategory);
 
 //получить все продукты с их категориями
 router.get('/category', getCategoriesWithProducts);

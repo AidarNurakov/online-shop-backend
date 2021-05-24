@@ -1,13 +1,6 @@
 const { Category } = require('../models/category');
 const { Product } = require('../models/product');
 
-// exports.createCategory = async function(category) {
-//   try{
-//     console.log('Перед получением категории');
-//   }catch(e) {
-
-//   }
-// }
 
 exports.createCategory = async function (category) {
 
@@ -75,3 +68,18 @@ exports.deleteCategoryById = async function(categoryId) {
     console.log('Error from deleting category')
   }
 } 
+
+exports.updateCategoryById = async function(id, data){
+  try{
+
+    console.log("данные до апдейта", data);
+    const updatedCategory = await Category.findByIdAndUpdate(id, data);
+    console.log("Апдейтед категория из сервиса",updatedCategory);
+    return updatedCategory;
+
+  }catch(err){
+    console.log(err.message);
+    throw new Error("Ошибка при изменении категории!" + err.message);
+  }
+}
+

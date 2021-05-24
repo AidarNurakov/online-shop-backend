@@ -2,7 +2,8 @@ const {
   getCategories,
   deleteCategoryById,
   getCategoryById,
-  createCategory
+  createCategory,
+  updateCategoryById
 } = require('../services/category.js');
 const { getProducts } = require('../services/product.js');
 
@@ -76,9 +77,30 @@ exports.getCategoriesWithProducts = async function (req, res) {
 exports.editCategory = async function (req, res) {
   try {
     const result = req.body;
+    console.log("реквест боди", req.body);
+    // if(!result.title || !req.file) {
+    //   res.status(400).json({
+    //     message: "Не заполнены необходимые поля!"
+    //   })
+    if(req.file) {
+      result.icon = req.file.path
+    }
+    const editingCategory = await getCategoryById(req.params.id);
+    if(!editingCategory) {
+      res.status(400).json({
+        message: "Попытка изменения несуществующей категории!"
+      })
+    }
+    console.log(req.params.id);
     console.log(result);
-  } catch (err) {
 
+    const updatedCategory = await updateCategoryById(req.params.id,result);
+    res.status(201).json({
+      message: "Категория успешно обновлена...",
+      data: updatedCategory
+    })
+  } catch (err) {
+    res.status(500).json(err.message)
   }
 }
 

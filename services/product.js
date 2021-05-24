@@ -68,7 +68,7 @@ exports.deleteProductById = async function (productId) {
 
     const removedProduct = await Product.findByIdAndDelete(productId);
     return removedProduct;
-  
+
 
   } catch (e) {
     // console.log('Error from deleting);
@@ -78,11 +78,12 @@ exports.deleteProductById = async function (productId) {
 }
 
 exports.editProduct = async function (productId, data) {
-  console.log(data);
+  console.log('Получены данны для изменения: ', data);
 
   try {
-    const updatedProduct = Product.findByIdAndUpdate(productId, data);
-
+    console.log('ID документа: ', productId);
+    const updatedProduct = await Product.findByIdAndUpdate(productId, data);
+    console.log('Документ после изменения: ', updatedProduct);
     return updatedProduct;
   } catch (e) {
     throw new Error('Ошибка при изменении товара: ' + e.message)
