@@ -1,2 +1,5 @@
 node_modules
-files/images/
+files/images/*.png
+files/images/*.jpg
+files/images/*.jpeg
+files/images/*.svg
