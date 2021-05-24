@@ -30,6 +30,8 @@ exports.createCategory = async function (req, res) {
       categoryData.path = req.file.path;
     }
 
+    console.log('путь файла:', req.file.path);
+
     const result = await createCategory(categoryData);
 
     res.status(201).json(result)
