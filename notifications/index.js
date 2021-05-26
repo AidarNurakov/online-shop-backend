@@ -5,7 +5,7 @@ const PORT = 5050;
 
 app.use(express.json());
 
-const {sendOrderInfo} = require('./services/notifications');
+const {sendOrderInfo} = require('./notifications');
 
 app.post('/create-order', (req, res) => {
 
