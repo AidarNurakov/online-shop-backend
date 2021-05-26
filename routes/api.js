@@ -21,6 +21,8 @@ const {
   editProduct,
 } = require('../controllers/product');
 
+const { createOrder } = require("../controllers/order");
+
 
 
 
@@ -61,6 +63,9 @@ router.delete('/product/:productId', deleteOneProduct);
 
 //изменение продукта
 router.patch('/product/:productId', upload.single('file'), editProduct);
+
+//создание заказа
+router.post('/create-order', createOrder);
 
 exports.router = router;
 
