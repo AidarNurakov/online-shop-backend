@@ -95,7 +95,7 @@ exports.createProduct = async function (req, res) {
     const productData = {
       ...req.body,
     };
-
+    console.log(req);
     if (req.file) {
       productData.path = req.file.path;
     }

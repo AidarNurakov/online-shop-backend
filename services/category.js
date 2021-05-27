@@ -1,5 +1,4 @@
 const { Category } = require('../models/category');
-const { Product } = require('../models/product');
 
 
 exports.createCategory = async function (category) {
@@ -8,8 +7,7 @@ exports.createCategory = async function (category) {
     console.log('Перед поиском категории', category)
 
     const categoryExists = await Category.findOne({
-      title: category.title,
-      icon: category.icon
+      title: category.title
     });
 
     if (categoryExists) {

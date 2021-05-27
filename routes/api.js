@@ -1,7 +1,6 @@
 const express = require('express');
 const {
-  upload,
-  iconLoad  
+  upload
 } = require('./multer.js');
 
 const {
@@ -22,10 +21,9 @@ const {
   editProduct,
 } = require('../controllers/product');
 
-const { createOrder } = require("../controllers/order");
-
-
-
+const {
+  createOrder
+} = require("../controllers/order");
 
 const router = express.Router();
 
@@ -38,7 +36,7 @@ router.get('/categories', getCategories);
 router.get('/category/:categoryId', getCategoryById);
 
 //создать категорию
-router.post('/category', upload.single('file'),createCategory);
+router.post('/category', upload.single('file'), createCategory);
 
 //Изменение категории
 router.patch('/category/:id', upload.single('file'), editCategory);
@@ -72,4 +70,3 @@ router.patch('/product/:productId', upload.single('file'), editProduct);
 router.post('/create-order', createOrder);
 
 exports.router = router;
-

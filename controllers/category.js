@@ -5,7 +5,11 @@ const {
   createCategory,
   updateCategoryById
 } = require('../services/category.js');
-const { getProducts } = require('../services/product.js');
+
+// const { saveFile } = require('../helpers/file');
+const {
+  getProducts
+} = require('../services/product.js');
 
 
 exports.getCategories = async function (req, res) {
@@ -25,6 +29,7 @@ exports.createCategory = async function (req, res) {
     const categoryData = {
       ...req.body,
     };
+    console.log(req.file);
 
     if (req.file) {
       categoryData.path = req.file.path;
@@ -84,11 +89,11 @@ exports.editCategory = async function (req, res) {
     //   res.status(400).json({
     //     message: "Не заполнены необходимые поля!"
     //   })
-    if(req.file) {
+    if (req.file) {
       result.icon = req.file.path
     }
     const editingCategory = await getCategoryById(req.params.id);
-    if(!editingCategory) {
+    if (!editingCategory) {
       res.status(400).json({
         message: "Попытка изменения несуществующей категории!"
       })
@@ -96,7 +101,7 @@ exports.editCategory = async function (req, res) {
     console.log(req.params.id);
     console.log(result);
 
-    const updatedCategory = await updateCategoryById(req.params.id,result);
+    const updatedCategory = await updateCategoryById(req.params.id, result);
     res.status(201).json({
       message: "Категория успешно обновлена...",
       data: updatedCategory
@@ -141,4 +146,3 @@ exports.deleteCategory = async function (req, res) {
     console.log(err.message);
   }
 }
-
