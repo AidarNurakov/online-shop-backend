@@ -1,5 +1,8 @@
 const express = require('express');
 const {
+  replaceUrl
+} = require('../middlewares/file-url')
+const {
   upload
 } = require('./multer.js');
 
@@ -36,7 +39,7 @@ router.get('/categories', getCategories);
 router.get('/category/:categoryId', getCategoryById);
 
 //создать категорию
-router.post('/category', upload.single('file'), createCategory);
+router.post('/category', upload.single('file'), replaceUrl, createCategory);
 
 //Изменение категории
 router.patch('/category/:id', upload.single('file'), editCategory);

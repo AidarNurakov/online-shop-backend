@@ -8,8 +8,6 @@ const storage = multer.diskStorage({
     cb(null, uploadPath);
   },
   filename: function (req, file, cb) {
-    console.log('Multter middleware called');
-    
     const fileName = file.fieldname + '-' + Date.now() + path.extname(file.originalname);
 
     req.fileName = fileName;
