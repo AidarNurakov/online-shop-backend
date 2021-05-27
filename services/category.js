@@ -61,7 +61,8 @@ exports.getCategoryById = async function(id) {
 
 exports.deleteCategoryById = async function(categoryId) {
   try{
-    const removedCategory = await Product.findByIdAndDelete(categoryId);
+    const removedCategory = await Category.findByIdAndDelete(categoryId);
+    console.log("Категория которая должна быть удалена:", removedCategory);
     return removedCategory;
 
   }catch(err) {

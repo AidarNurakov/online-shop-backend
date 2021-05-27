@@ -10,7 +10,8 @@ const {
   getCategories,
   getCategoriesWithProducts,
   editCategory,
-  getCategoryById
+  getCategoryById,
+  deleteCategory
 } = require('../controllers/category');
 
 const {
@@ -44,6 +45,9 @@ router.patch('/category/:id', upload.single('file'), editCategory);
 
 //получить все продукты с их категориями
 router.get('/category', getCategoriesWithProducts);
+
+//Удалить категорию по айди
+router.delete('/category/:categoryId', deleteCategory);
 
 
 //энд пойнты для товаров --------------------------------------
