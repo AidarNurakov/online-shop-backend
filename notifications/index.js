@@ -1,23 +1,23 @@
-const express = require('express');
-const app = express();
+// const express = require('express');
+// const app = express();
 
-const PORT = 5050;
+// const PORT = 5050;
 
-app.use(express.json());
+// app.use(express.json());
 
-const {sendOrderInfo} = require('./notifications');
+// const {sendOrderInfo} = require('./notifications');
 
-app.post('/create-order', (req, res) => {
+// app.post('/create-order', (req, res) => {
 
-console.log(req.body);
+// console.log(req.body);
 
-sendOrderInfo();
+// sendOrderInfo();
 
-    res.status(201).json({
-        message: 'Заказ успешно принят'
-    })
-});
+//     res.status(201).json({
+//         message: 'Заказ успешно принят'
+//     })
+// });
 
-app.listen(PORT, () => {
-    console.log('Сервер запущен!');
-});
+// app.listen(PORT, () => {
+//     console.log('Сервер запущен!');
+// });

@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require('path');
 const multer = require('multer');
 
 const uploadPath = path.join(__dirname, '../files/images');
