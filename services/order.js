@@ -1,3 +1,7 @@
+const axios = require("axios").default;
+const nodemailer = require("nodemailer");
+
+
 const chat_id = "-1001405882451";
 
 const BOT_TOKEN = "1871782386:AAEUfvZgOhil0-TzUaa1g3v8gMexv96r1Ys";

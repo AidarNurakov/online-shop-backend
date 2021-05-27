@@ -296,3 +296,16 @@
 
 ```
 
+### Orders
+
+- Создание заказа, METHOD: POST
+- url: base_url/create-order
+
+- Response: 
+
+```
+{
+    "message": "Заказ успешно принят"
+}
+
+```

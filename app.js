@@ -2,8 +2,6 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
-const axios = require("axios").default;
-const nodemailer = require("nodemailer");
 
 
 const {
