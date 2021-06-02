@@ -19,26 +19,17 @@ async function sendTOtelegram(text) {
   }
 }
 
-const sample = {
-  productId: "123",
-  phone: "3125553535",
-  count: 5,
-  userName: "Han",
-  price: 500,
-  orderNumber: 1,
-  name: "Nitro 5",
-};
+
 
 function createOrderText(order) {
   return `
-    Номер заказа: ${order.orderNumber}
-    Номер клиента: ${order.phone}
     Имя Клиента: ${order.userName}
-    Количество: ${order.count}
     Цена: ${order.price}
-    Имя: ${order.name}
+    Название: ${order.name}
     `;
+    
 }
+
 
 async function sendToEmail(orderText) {
     try {
@@ -66,7 +57,8 @@ async function sendToEmail(orderText) {
 
 exports.sendOrderInfo = async (order) => {
     try {
-        const orderText = createOrderText(sample);
+        const orderText = createOrderText(order);
+        console.log(order);
         await sendTOtelegram(orderText);
         await sendToEmail(orderText);
     } catch (e) {

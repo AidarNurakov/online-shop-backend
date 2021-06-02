@@ -7,7 +7,6 @@ const {
 } = require('./multer.js');
 
 const {
-  // createCategoryTest,
   createCategory,
   getCategories,
   getCategoriesWithProducts,
@@ -27,6 +26,10 @@ const {
 const {
   createOrder
 } = require("../controllers/order");
+
+const {
+  createAboutUsContent
+} = require('../controllers/aboutUs');
 
 const router = express.Router();
 
@@ -71,5 +74,8 @@ router.patch('/product/:productId', upload.single('file'), editProduct);
 
 //создание заказа
 router.post('/create-order', createOrder);
+
+//Создание контента для страницы "О нас" 
+router.post('/create-aboutus-content', upload.single('file'), createAboutUsContent);
 
 exports.router = router;
