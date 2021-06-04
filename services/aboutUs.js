@@ -39,3 +39,25 @@ exports.createAboutUsContent = async function (content) {
     }
   }
 }
+
+exports.updateContent = async function (data) {
+  try {
+    console.log("данные до апдейта", data);
+    const updatedContent = await AboutUs.findOneAndUpdate(data);
+    console.log("Апдейтед content:", updatedContent);
+    return updatedContent;
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+
+
+exports.getAboutUsContent = async function (content) {
+  try {
+    const content = await AboutUs.find();
+    return content;
+  } catch (e) {
+    console.log(e.message);
+  }
+
+}

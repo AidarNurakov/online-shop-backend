@@ -28,7 +28,9 @@ const {
 } = require("../controllers/order");
 
 const {
-  createAboutUsContent
+  createAboutUsContent,
+  editAboutUsContent,
+  getAboutUsContent
 } = require('../controllers/aboutUs');
 
 const router = express.Router();
@@ -77,5 +79,11 @@ router.post('/create-order', createOrder);
 
 //Создание контента для страницы "О нас" 
 router.post('/create-aboutus-content', upload.single('file'), createAboutUsContent);
+
+//Измененение контента страницы "О нас"
+router.patch('/update-aboutus-content', upload.single('file'), editAboutUsContent);
+
+//Получение контента страницы "О нас"
+router.get('/get-aboutus-content', getAboutUsContent);
 
 exports.router = router;

@@ -85,10 +85,6 @@ exports.editCategory = async function (req, res) {
   try {
     const result = req.body;
     console.log("реквест боди", req.body);
-    // if(!result.title || !req.file) {
-    //   res.status(400).json({
-    //     message: "Не заполнены необходимые поля!"
-    //   })
     if (req.file) {
       result.icon = req.file.path
     }

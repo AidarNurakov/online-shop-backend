@@ -78,7 +78,7 @@ exports.deleteProductById = async function (productId) {
 }
 
 exports.editProduct = async function (productId, data) {
-  console.log('Получены данны для изменения: ', data);
+  console.log('Получены данные для изменения: ', data);
 
   try {
     console.log('ID документа: ', productId);
