@@ -16,7 +16,7 @@ app.use(express.static('files'))
 
 const PORT = process.env.PORT || 5050;
 
-const dbUrl = 'mongodb+srv://homelander:Drmirmid7184@cluster0.wz4cl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const dbUrl = '';
 
 async function start() {
   try {
